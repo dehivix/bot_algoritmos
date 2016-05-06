@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bot_algoritmos.settings")
-from django.contrib import admin
+import requests
+
+#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bot_algoritmos.settings")
+#from django.contrib import admin
 #from bot.models import *
-from wiki import wiki
-from google import google
+#from wiki import wiki
+#from google import google
 import telebot
 
 #Llamado al bot desde la api de telegram
@@ -22,11 +24,10 @@ def send_welcome(message):
     bot.reply_to(message, """\
     Hola @"""+user+"""\
     Espero que te encuentres bien, soy un bot creado con la intencion de asistir\
-    en labores pertinentes a la asignatura de algoritmos! Gusto en saludarte.\
+    en labores pertinentes a la asignatura! Gusto en saludarte.\
     Creado por @dehivix
     """)
-
-
+'''
 #Busquedas en wikipedia
 @bot.message_handler(commands=['wiki'])
 def BuscarWiki(message):
@@ -34,13 +35,12 @@ def BuscarWiki(message):
     if ("Cannot acces link!" in respuesta):
         reply="No hay articulos en wikipedia\n"
     bot.reply_to(message, respuesta)
-
 #Busquedas en google
 @bot.message_handler(commands=['google'])
 def BuscarGoogle(message):
     respuesta=google(message)
     bot.reply_to(message, respuesta)
-
+'''
 
 #Mensaje de despedida
 @bot.message_handler(commands=['chao'])
@@ -56,7 +56,11 @@ def echo_message(message):
     Lo siento, soy un bot, solo estoy programado para responder algunos comandos.\
     """)
 
-bot.polling()
+#bot.polling()
 
 while True:
-    pass
+    try:
+        bot.polling(none_stop=True)
+    except requests.exceptions.ConnectionError as e:
+        print >> sys.stderr, str(e)
+        time.sleep(15)
