@@ -1,4 +1,4 @@
-import urllib2
+import urllib3
 
 def wiki(term): # wiki <search term>
     #import ipdb; ipdb.set_trace()
@@ -26,9 +26,9 @@ def wiki(term): # wiki <search term>
 def get_para(wlink):
     msg = ''
     try:
-        page_request = urllib2.Request(wlink)
+        page_request = urllib3.Request(wlink)
         page_request.add_header('User-agent', 'Mozilla/5.0')
-        page = urllib2.urlopen(page_request)
+        page = urllib3.urlopen(page_request)
     except IOError:
         msg = 'No hay articulos en Wikipedia, tal vez quieras buscarlo en Google!'
 

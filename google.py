@@ -1,4 +1,4 @@
-import urllib
+import urllib3 as urllib
 import json as m_json
 
 def google(terms): # google <search term>
