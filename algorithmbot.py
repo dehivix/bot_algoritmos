@@ -32,22 +32,6 @@ def send_welcome(message):
     """)
 
 
-'''
-#Busquedas en wikipedia
-@bot.message_handler(commands=['wiki'])
-def BuscarWiki(message):
-    respuesta=wiki(message)
-    if ("Cannot acces link!" in respuesta):
-        reply="No hay articulos en wikipedia\n"
-    bot.reply_to(message, respuesta)
-#Busquedas en google
-@bot.message_handler(commands=['google'])
-def BuscarGoogle(message):
-    respuesta=google(message)
-    bot.reply_to(message, respuesta)
-'''
-
-
 #Mensaje para datos
 @bot.message_handler(commands=['datos'])
 def send_info(message):
@@ -100,7 +84,6 @@ def echo_message(message):
     Lo siento, soy un bot, solo estoy programado para responder algunos comandos.\
     """)
 
-#bot.polling()
 
 while True:
     try:
