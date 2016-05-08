@@ -12,6 +12,7 @@ from notas.models import PlanEvaluacion
 from notas.models import Periodo
 from notas.models import Notas
 import telebot
+import time
 
 #Llamado al bot desde la api de telegram
 API_TOKEN = '138678282:AAEHgnAE5QBluRPnOurYV2hm5SdwEjFjXxI'
